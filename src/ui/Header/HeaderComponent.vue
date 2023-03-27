@@ -2,7 +2,8 @@
 
 <template>
   <header class="header">
-    <h3>Welcome to the Nuwe's vite vue skeleton 2023 Marzo 202311111111</h3>
+    <h3>Welcome to the Nuwe's vite vue skeleton</h3>
+    <h4>Soy Cristian Estupiñan y doy clases los jueves</h4>
   </header>
 </template>
 
