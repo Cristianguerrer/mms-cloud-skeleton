@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN yarn add vite
 
-# Installing packages
+# Installing packages11
 RUN yarn install
 
 ADD . /app
