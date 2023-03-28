@@ -45,11 +45,10 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
     - name: deploy to cluster
-      env:
-        uses: steebchen/kubectl@v2.0.0
-        with: # defaults to latest kubectl binary versionvvv
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: set image --record deployment/app-skeleton mms-cloud-skeleton-1=$IMAGE_NAME:${{ github.sha }}
+      uses: steebchen/kubectl@v2.0.0
+      with: # defaults to latest kubectl binary versionvvv
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        command: set image --record deployment/app-skeleton mms-cloud-skeleton-1=$IMAGE_NAME:${{ github.sha }}
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       with:
