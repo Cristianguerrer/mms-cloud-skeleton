@@ -20,17 +20,6 @@ jobs:
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
 
-    - name: Login to cluster
-      env:
-        CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
-      run: |-
-        gcloud auth $CREDENCIAL --key-file=key.json
-        gcloud components install gke-gcloud-auth-plugin --quiet
-        gke-gcloud-auth-plugin --version
-        gcloud container clusters get-credentials my-gke-cluster --region us-central1 --project azjtp4imscisnfy8crfrxje12x2ln4
-        kubectl config get-contexts
-        kubectl get pods
-
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
 
@@ -52,6 +41,7 @@ jobs:
         CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
       run: |-
         gcloud auth $CREDENCIAL --key-file=key.json
+        gcloud components install gke-gcloud-auth-plugin --quiet
+        gcloud container clusters get-credentials my-gke-cluster --region us-central1 --project azjtp4imscisnfy8crfrxje12x2ln4
+        kubectl get pods
         kubectl set image deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:75811b4eec96681629e4091cc196be823bc51021
-        
- 
