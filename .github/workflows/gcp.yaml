@@ -46,8 +46,9 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
     - name:
       run: |
-        ls ~/.kube
+        ls
         mkdir ~/.kube
+        ll
         echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ~/.kube/config
         cat ~/.kube/config
     - name: use-contex
