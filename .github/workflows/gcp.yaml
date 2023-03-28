@@ -46,11 +46,13 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
     - name:
       run: |
-        ls
+        ll
+        cd
+        ll
         mkdir ~/.kube
         ll
-        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ~/.kube/config
-        cat ~/.kube/config
+        # echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ~/.kube/config
+        #cat ~/.kube/config
     - name: use-contex
       run: kubectl config use-contex octobay-api
     - name: Deploy to K8s
