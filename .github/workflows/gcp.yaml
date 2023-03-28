@@ -23,7 +23,7 @@ jobs:
     - name: Deploy to cluster new image
       run: |-
         
-        apt-get install curl -y
+        sudo apt-get install curl -y
         curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
         chmod +x ./kubectl
         mv ./kubectl /usr/local/bin/kubectl
@@ -35,11 +35,6 @@ jobs:
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
 
-    # - name: Automatic Tagging of Releases
-    #   id: increment-git-tag
-    #   run: |
-    #     bash ./scripts/git_update.sh -v major
-
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet
@@ -48,7 +43,6 @@ jobs:
     - name: Push Docker Image to Container Registry (GCR)
       env:
         GIT_TAG: ${{ github.sha }}
-        # GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
       run: |-
         gcloud auth $CREDENCIAL --key-file=key.json
