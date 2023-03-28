@@ -43,6 +43,6 @@ jobs:
         CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
       run: |-
         gcloud auth $CREDENCIAL --key-file=key.json
-        set image deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:01c8ae5e213d93c7eeb7fa0b12cf160d16c2d37f
+        kubectl set image deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:75811b4eec96681629e4091cc196be823bc51021
         
  
