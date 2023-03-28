@@ -22,7 +22,7 @@ jobs:
 
     - name: Deploy to cluster new image
       run: |-
-        
+        sudo apt-get update
         curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
         chmod +x ./kubectl
         mv ./kubectl /usr/local/bin/kubectl
@@ -30,7 +30,7 @@ jobs:
         ll
         mkdir ~/.kube
         ls ~/.kube
-        echo ${{ KUBE_CONFIG_DATA }}
+        echo ${{ secrets.KUBE_CONFIG_DATA }}
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
