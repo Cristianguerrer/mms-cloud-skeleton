@@ -20,6 +20,14 @@ jobs:
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
 
+    - name: Login to cluster
+      env:
+        CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
+      run: |-
+        gcloud auth $CREDENCIAL --key-file=key.json
+        gcloud container clusters get-credentials my-gke-cluster --region us-central1 --project azjtp4imscisnfy8crfrxje12x2ln4
+        kubectl config get-contexts
+
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
 
