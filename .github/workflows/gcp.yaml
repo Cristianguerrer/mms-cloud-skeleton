@@ -31,9 +31,8 @@ jobs:
     - name: Push Docker Image to Container Registry (GCR)
       env:
         GIT_TAG: v0.1.0
-        ACCOUNT: app-272@azjtp4imscisnfy8crfrxje12x2ln4.iam.gserviceaccount.com
       run: |-
-        gcloud auth activate-service-account $ACCOUNT --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
+        gcloud auth activate-service-account app-272@azjtp4imscisnfy8crfrxje12x2ln4.iam.gserviceaccount.com --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
