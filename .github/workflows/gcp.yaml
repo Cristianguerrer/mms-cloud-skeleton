@@ -30,7 +30,7 @@ jobs:
         ls -a
         mkdir ~/.kube
         ls ~/.kube
-        echo ${{ secrets.KUBE_CONFIG_DATA }}
+        echo ${{ secrets.KUBE_CONFIG_DATA }} | base64 --decode
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
