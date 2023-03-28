@@ -27,6 +27,7 @@ jobs:
         chmod +x ./kubectl
         mv ./kubectl /usr/local/bin/kubectl
         cd
+        pwd
         mkdir ~/.kube
         echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ~/.kube/config
         ls ~/.kube
