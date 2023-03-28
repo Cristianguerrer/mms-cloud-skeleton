@@ -48,7 +48,7 @@ jobs:
 
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
-      with: # defaults to latest kubectl binary versionvvv
+      with: # defaults to latest kubectl binary versionvvvddd
         config: ${{ secrets.KUBE_CONFIG_DATA }}
         command: set image --record deployment/app-skeleton mms-cloud-skeleton-1=$IMAGE_NAME:${{ github.sha }}
     - name: verify deployment
