@@ -38,8 +38,14 @@ jobs:
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
-        set image --record deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:${{ github.sha }}
+        set image deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:${{ github.sha }}
     
-    
+    - name: Push Docker Image to Container Registry (GCR)
+      env:
+        GIT_TAG: ${{ github.sha }}
+        CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
+      run: |-
+        gcloud auth $CREDENCIAL --key-file=key.json
+        set image deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:${{ github.sha }}
         
  
