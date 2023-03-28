@@ -22,15 +22,15 @@ jobs:
 
     - name: Deploy to cluster new image
       run: |-
-        
-        sudo apt-get install curl -y
+        sudo apt-get update
         curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
         chmod +x ./kubectl
         mv ./kubectl /usr/local/bin/kubectl
-        kubectl version --client
         cd
+        ll
+        mdkir ~/.kube
         ls ~/.kube
-
+        echo ${{ KUBE_CONFIG_DATA }}
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
