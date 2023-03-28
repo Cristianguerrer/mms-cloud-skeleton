@@ -35,7 +35,8 @@ jobs:
         
     - name: Push Docker Image to Container Registry (GCR)
       env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+        # GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+        GIT_TAG: ${{ github.sha }}
         CREDENCIAL: activate-service-account 192937796538-compute@developer.gserviceaccount.com
       run: |-
         gcloud auth $CREDENCIAL --key-file=key.json
