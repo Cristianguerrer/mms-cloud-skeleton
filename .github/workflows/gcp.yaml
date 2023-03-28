@@ -46,6 +46,8 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
     - name: deploy to cluster
+      env:
+        GIT_TAG: ${{ github.sha }}
         uses: steebchen/kubectl@v2.0.0
         with: # defaults to latest kubectl binary version
           config: ${{ secrets.KUBE_CONFIG_DATA }}
