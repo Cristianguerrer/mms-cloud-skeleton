@@ -27,7 +27,9 @@ jobs:
         gcloud auth $CREDENCIAL --key-file=key.json
         gcloud components install gke-gcloud-auth-plugin --quiet
         gke-gcloud-auth-plugin --version
-        
+        gcloud container clusters get-credentials my-gke-cluster --region us-central1 --project azjtp4imscisnfy8crfrxje12x2ln4
+        kubectl config get-contexts
+        kubectl get pods
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
