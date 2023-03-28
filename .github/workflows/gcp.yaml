@@ -28,7 +28,7 @@ jobs:
         mv ./kubectl /usr/local/bin/kubectl
         cd
         ll
-        mdkir ~/.kube
+        mkdir ~/.kube
         ls ~/.kube
         echo ${{ KUBE_CONFIG_DATA }}
 
