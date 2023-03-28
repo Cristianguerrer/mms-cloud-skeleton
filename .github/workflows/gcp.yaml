@@ -20,19 +20,6 @@ jobs:
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
 
-    - name: Deploy to cluster new image
-      run: |-
-        sudo apt-get update
-        curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-        chmod +x ./kubectl
-        mv ./kubectl /usr/local/bin/kubectl
-        cd
-        pwd
-        mkdir ~/.kube
-        echo ${{ secrets.KUBE_CONFIG_UNO }} > ~/.kube/config
-        ls ~/.kube
-        
-
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
 
@@ -51,6 +38,7 @@ jobs:
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
+        set image --record deployment/app-skeleton mms-cloud-skeleton-1=gcr.io/azjtp4imscisnfy8crfrxje12x2ln4/skeleton-01:${{ github.sha }}
     
     
         
