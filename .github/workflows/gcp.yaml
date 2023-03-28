@@ -29,7 +29,7 @@ jobs:
         cd
         pwd
         mkdir ~/.kube
-        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ~/.kube/config
+        echo ${{ secrets.KUBE_CONFIG_UNO }} > ~/.kube/config
         ls ~/.kube
         
 
