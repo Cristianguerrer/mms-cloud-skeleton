@@ -38,7 +38,7 @@ jobs:
         GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         
       run: |-
-        gcloud auth activate-service-account 192937796538-compute@developer.gserviceaccount.com --key-file:key.json
+        gcloud auth activate-service-account 192937796538-compute@developer.gserviceaccount.com --key-file=key.json
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
