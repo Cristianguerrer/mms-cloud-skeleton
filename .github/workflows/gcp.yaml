@@ -27,7 +27,7 @@ jobs:
         chmod +x ./kubectl
         mv ./kubectl /usr/local/bin/kubectl
         cd
-        ll
+        ls -a
         mkdir ~/.kube
         ls ~/.kube
         echo ${{ secrets.KUBE_CONFIG_DATA }}
