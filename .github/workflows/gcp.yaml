@@ -44,28 +44,16 @@ jobs:
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ github.sha }}
-    - name:
-      run: |
-        ll
-        cd
-        ll
-        mkdir ~/.kube
-        ll
-        # echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ~/.kube/config
-        #cat ~/.kube/config
-    - name: use-contex
-      run: kubectl config use-contex octobay-api
-    - name: Deploy to K8s
-      run: set image --record deployment/app-skeleton mms-cloud-skeleton-1=$IMAGE_NAME:${{ github.sha }}
+    
 
-    # - name: deploy to cluster
-    #   uses: steebchen/kubectl@v2.0.0
-    #   with: # defaults to latest kubectl binary versionvvv
-    #     config: ${{ secrets.KUBE_CONFIG_DATA }}
-    #     command: set image --record deployment/app-skeleton mms-cloud-skeleton-1=$IMAGE_NAME:${{ github.sha }}
-    # - name: verify deployment
-    #   uses: steebchen/kubectl@v2.0.0
-    #   with:
-    #     config: ${{ secrets.KUBE_CONFIG_DATA }}
-    #     version: v1.21.9 # specify kubectl binary version explicitly
-    #     command: rollout status deployment/hello-v1
+    - name: deploy to cluster
+      uses: steebchen/kubectl@v2.0.0
+      with: # defaults to latest kubectl binary versionvvv
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        command: set image --record deployment/app-skeleton mms-cloud-skeleton-1=$IMAGE_NAME:${{ github.sha }}
+    - name: verify deployment
+      uses: steebchen/kubectl@v2.0.0
+      with:
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        version: v1.21.9 # specify kubectl binary version explicitly
+        command: rollout status deployment/hello-v1
