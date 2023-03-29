@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:alpine 
 
 ADD package.json /app/package.json
 
@@ -6,14 +6,18 @@ WORKDIR /app
 
 RUN yarn add vite
 
-# Installing packages11
 RUN yarn install
 
 ADD . /app
 
-# Building TypeScript files
 RUN yarn build-only
 
-EXPOSE 3000
+FROM nginx:stable-alpine
 
-CMD [ "yarn", "preview" ]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=0 /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
