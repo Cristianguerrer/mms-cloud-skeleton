@@ -3,7 +3,7 @@
 <template>
   <header class="header">
     <h3>Welcome to the Nuwe's vite vue skeleton</h3>
-    <h4>Hola, Soy Cristian Estupiñan - DevOps con experiencia y doy clases los jueves!! Saludos a la comunidad</h4>
+    <h4>Hola, Soy Cristian Estupiñan - DevOps con experiencia y doy clases los jueves!! Saludos a la comunidad XD</h4>
   </header>
 </template>
 

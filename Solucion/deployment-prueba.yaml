@@ -228,19 +228,19 @@ metadata:
   namespace: default
 spec:
   allocateLoadBalancerNodePorts: true
-  clusterIP: 10.3.243.195
+  clusterIP: 10.3.243.192
   clusterIPs:
-    - 10.3.243.195
+    - 10.3.243.192
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
   ipFamilies:
     - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-    - nodePort: 30895
+    - nodePort: 30893
       port: 80
       protocol: TCP
-      targetPort: 3000
+      targetPort: 80
   selector:
     app: app-skeleton
   sessionAffinity: None
